@@ -14,14 +14,20 @@
           <li class="nav-item">
             <router-link to="/product" class="nav-link ">Product</router-link>
           </li>
-          
+
           <li class="nav-item" v-if="login">
             <router-link to="/pagemember" style="text-decoration: none">
               <div class="nav-link fw-bold ">{{ memName }}</div>
             </router-link>
           </li>
-          
-          <li class="nav-item  pe-3"  v-if="login">
+
+          <li class="nav-item " v-if="login">
+            <router-link to="/cartlist" style="text-decoration: none;">
+              <div class="nav-link fw-bold">Cart</div>
+            </router-link>
+          </li>
+
+          <li class="nav-item  pe-3" v-if="login">
             <CartInfo />
           </li>
           <li class="nav-item" v-if="login">
@@ -29,7 +35,7 @@
               <div class="nav-link fw-bold ">ลงชื่อออก</div>
             </a>
           </li>
-          
+
           <li class="nav-item" v-if="!login">
             <router-link to="/login" style="text-decoration: none">
               <div class="nav-link ">Login</div>

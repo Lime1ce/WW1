@@ -6,6 +6,7 @@ import TheRegister from "@/components/TheRegister.vue"
 import PageMember from "@/components/PageMember.vue"
 import ProductShow from "../components/ProductShow.vue"
 import CartShow from "../components/CartShow.vue"
+import CartList from "../components/CartList.vue"
 const routes = [
     {
         path:'/',
@@ -44,7 +45,11 @@ const routes = [
         name:'CartShow',
         component:CartShow
     },
-
+    {
+        path:'/cartList/',
+        name:'CartList',
+        component:CartList
+    },
 ]
 const router = createRouter({
     history:createWebHistory(import.meta.env.BASE_URL),routes

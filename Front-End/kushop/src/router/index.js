@@ -5,6 +5,7 @@ import TheHome from "@/components/TheHome.vue"
 import TheRegister from "@/components/TheRegister.vue"
 import PageMember from "@/components/PageMember.vue"
 import ProductShow from "../components/ProductShow.vue"
+import CartShow from "../components/CartShow.vue"
 const routes = [
     {
         path:'/',
@@ -36,7 +37,14 @@ const routes = [
         path:'/ProductShow/:pdId',
         name:'ProductShow',
         component:ProductShow
-    }
+    },
+    {
+        // กำหนดว่า route นี้รับ parameter ต้องระบุให้ตรงกันด้วย
+        path:'/cartShow/:cartId',
+        name:'CartShow',
+        component:CartShow
+    },
+
 ]
 const router = createRouter({
     history:createWebHistory(import.meta.env.BASE_URL),routes

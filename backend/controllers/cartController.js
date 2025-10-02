@@ -175,3 +175,25 @@ export async function getCartDtl(req, res) {
       })
   }
 }
+
+export async function getCartByCus(req, res) {
+  console.log(`POST Cart By Customer is Requested`)
+  try {
+      const result = await database.query({
+          text:`  SELECT ROW_NUMBER() OVER (ORDER BY ct."cartId" DESC) AS row_number,
+                          ct.*, SUM(ctd.qty) AS sqty,SUM(ctd.price*ctd.qty) AS sprice
+                  FROM carts ct LEFT JOIN "cartDtl" ctd ON ct."cartId" = ctd."cartId"
+                  WHERE ct."cusId"=$1
+                  GROUP BY ct."cartId"
+                  ORDER BY ct."cartId" DESC` ,
+          values:[req.body.id]
+      })
+      console.log(`id=${req.body.id} \n`+result.rows[0])
+      return res.json(result.rows)
+  }
+  catch (err) {
+      return res.json({
+          error: err.message
+      })
+  }
+}

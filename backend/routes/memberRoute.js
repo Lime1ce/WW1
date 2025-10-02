@@ -8,4 +8,6 @@ router.get('/members/logout',memberC.logoutMember)
 router.post('/members',memberC.postMember)
 router.post('/members/login',memberC.loginMember)
 
+router.post('/members/uploadimg',memberC.uploadMember)
+
 export default router

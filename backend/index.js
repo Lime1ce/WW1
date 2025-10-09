@@ -8,6 +8,11 @@ import productRoute from "./routes/productRoute.js"
 import memberRoute from "./routes/memberRoute.js"
 import cookieParser from "cookie-parser"
 import cartRoute from "./routes/cartRoute.js"
+import swaggerUI from "swagger-ui-express"
+import yaml from "yaml"
+import fs from "fs" 
+
+
 
 dotenv.config()
 
@@ -17,6 +22,13 @@ const port = process.env.PORT
 
 app.use("/img_pd",express.static("img_pd"))
 app.use("/img_mem",express.static("img_mem"))
+
+// swagger
+const swaggerfile = fs.readFileSync('services/swagger.yaml','utf-8')
+const swaggerDoc = yaml.parse(swaggerfile)
+// กำหนด path ที่จะให้เรียกหน้า Document ขึ้นมา
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDoc))
+
 
 // กำหนด Option ของ cors เพิ่มเติมเมื่อมีการส่งข้อมูล Cookie หรือ Header
 app.use(cors({
